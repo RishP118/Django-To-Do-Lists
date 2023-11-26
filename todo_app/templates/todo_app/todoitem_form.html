@@ -1,4 +1,3 @@
-<!-- todo_list/todo_app/templates/todo_app/todoitem_form.html -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -9,21 +8,21 @@
     <table>
         {{ form.as_table }}
     </table>
-    <input
-        value="Submit"
-        type="submit">
-
-    {% if object %}
-    <input
-        value="Delete"
-        type="button"
-        onclick="location.href=
-        '{% url "item-delete" todo_list.id object.id %}'">
-    <input
-        value="Go Back"
-        type="button"
-        onclick="location.href='{% url "list" todo_list.id %}'">
- {% endif %}
+    <p>
+        <input
+            value="Submit"
+            type="submit">
+        <input
+            value="Go Back"
+            type="button"
+            onclick="location.href='{% url "list" todo_list.id %}'">
+        {% if object %}
+            <input
+                value="Delete this item"
+                type="button"
+                onclick="location.href='{% url "item-delete" todo_list.id object.id %}'">
+        {% endif %}
+    </p>
 </form>
 
 {% endblock %}

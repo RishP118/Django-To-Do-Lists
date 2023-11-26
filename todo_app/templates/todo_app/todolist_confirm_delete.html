@@ -1,8 +1,6 @@
-<!-- todo_list/todo_app/templates/todo_app/todolist_confirm_delete.html -->
 {% extends "base.html" %}
 
 {% block content %}
-<!--todolist_confirm_delete.html-->
 
 <h3>Delete List</h3>
 
@@ -13,10 +11,10 @@
     <input
         value="Yes"
         type="submit">
-    <input
-        value="No"
-        type="button"
-        onclick="location.href='{% url "index" %}';">
 </form>
+<input
+    value="No"
+    type="button"
+    onclick="location.href='{% url "index" %}';">
 
 {% endblock %}

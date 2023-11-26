@@ -2,38 +2,32 @@
 {% block content %}
 
 {% if request.user.is_authenticated %}
-<p>Hello!!  {{request.user}}</p>
 <a href="{% url 'logout' %}">Logout</a>
 {% else %} 
 <a href="{% url 'login' %}">Login</a>   
 {% endif %}
 
-<h1>My To do List</h1>
-<a href = "{% url 'task-create' %}"> Add Tasks </a>
-
-<table>
-    <tr>
-        <th>Item</th>
-    </tr>    
-    {% for task in tasks %}
-    <tr>  
-        <td>
-
-            {% if task.complete %}
-
-            <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s></i> 
-            {% else %}
-            <a href="{% url 'task-update' task.id %}">{{task}}</a> 
-            {% endif %}
-
-        </td>
-
-        <td><a href="{% url 'task-delete' task.id %}">Delete</a></td>
-    </tr>    
-
-    {% empty %} 
-         <h3>No Item in List</h3>
-    {% endfor %}    
-</table>
+{% if object_list %}
+<h3>All my lists</h3>
+{% endif %}
+<ul>
+    {% for todolist in object_list %}
+    <li>
+        <div
+            role="button"
+            onclick="location.href='{% url "list" todolist.id %}'">
+            {{ todolist.title }}
+        </div>
+    </li>
+    {% empty %}
+    <h4>You have no lists!</h4>
+    {% endfor %}
+</ul>
+<p>
+    <input
+        value="Add a new list"
+        type="button"
+        onclick="location.href='{% url "list-add" %}'"/>
+</p>
 
 {% endblock %}

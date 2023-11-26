@@ -1,21 +1,111 @@
-
 <!doctype html>
 <html lang="en">
 
 <head>
-   
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(92, 187, 111);
+            color: #7e4242;
+            text-align: center;
+        }
+
+        h1 {
+            text-decoration: underline;
+        }
+
+        h3, h5 {
+            text-decoration: underline;
+            font-size: larger;
+            color: chocolate;
+        }
+
+        header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+            cursor: pointer;
+            font-size: 50px;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .content {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            background-color: #c2d9c7;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            color: #2a8b2f;
+            font-weight: bold;
+            text-align: left;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+
+        @media screen and (max-width: 600px) {
+            main {
+                height: auto;
+            }
+        }
+    </style>
     <title>Django To-do Lists</title>
 </head>
 
+
 <body>
     <div>
-        {% block content %}
-
-        {% endblock %}
+        <h1 onclick="location.href='{% url "index" %}'">
+            Django To-do Lists
+        </h1>
     </div>
+    <main>
+        <div class="content">
+            {% block content %}
+            <form>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+
+                <label for="due_date">Due date:</label>
+                <input type="date" id="due_date" name="due_date" required>
+            </form>
+            {% endblock %}
+        </div>
+    </main>
 </body>
 
 </html>

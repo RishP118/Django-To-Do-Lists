@@ -1,12 +1,10 @@
-<!-- todo_list/todo_app/templates/todo_app/todo_list.html -->
 {% extends "base.html" %}
 
 {% block content %}
 <div>
     <div>
         <div>
-            <h3>Edit list</h3>
-            <h5>{{ todo_list.title | upper }}</h5>
+            <h5>{{ todo_list.title}}</h5>
         </div>
         <ul>
             {% for todo in object_list %}
@@ -14,10 +12,10 @@
                 <div>
                     <div
                         role="button"
-                        onclick="location.href=
-                        '{% url "item-update" todo_list.id todo.id %}'">
+                        onclick="location.href='{% url "item-update" todo_list.id todo.id %}'">
+                        <input type="checkbox" {% if todo.is_completed %}checked{% endif %} disabled>
                         {{ todo.title }}
-                        (Due {{ todo.due_date | date:"l, F j" }})
+                        (Due {{ todo.due_date | date:"l, F j"}})
                     </div>
                 </div>
             </li>
@@ -27,19 +25,17 @@
         </ul>
         <p>
             <input
-                value="Add a New Item"
+                value="Add a new item"
                 type="button"
-                onclick="location.href=
-                '{% url "item-add" todo_list.id %}'" />
+                onclick="location.href='{% url "item-add" todo_list.id %}'"/>
             <input
-                value="Delete the list"
+                value="Delete this list"
                 type="button"
-                onclick="location.href=
-                '{% url "list-delete" todo_list.id %}'" />
+                onclick="location.href='{% url "list-delete" todo_list.id %}'" />
             <input
                 value="Go Back"
                 type="button"
-                onclick="location.href='{% url "index" %}';" />
+                onclick="location.href='{% url "index" %}';">
         </p>
     </div>
 </div>
